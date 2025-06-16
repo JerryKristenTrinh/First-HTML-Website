@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Emmet HTML Shortcuts</title>
+    <style>
+        /* Basic CSS for better presentation and to show .value styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .container {
+            max-width: 800px;
+            /* Adjust margin for containers that are part of the flex layout */
+            margin: 0 auto 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        b {
+            color: #d9534f; /* Highlight bold text (consider strong tag) */
+        }
+        strong { /* Added style for strong tags */
+            color: #d9534f;
+        }
+        code {
+            display: block; /* Make code blocks take full width */
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap; /* Preserve whitespace and wrap long lines */
+            font-family: monospace;
+            margin-bottom: 15px;
+        }
+        /* Styling for the output headings to make them distinct */
+        .value-1, .value-2, .value-3, .value-4 {
+            color: #28a745;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        /* --- CSS for the toggle functionality --- */
+        #explanationContainer {
+            display: none; /* Initially hide the explanation */
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            background-color: #e9f7ef; /* Light green background for visibility */
+            border-radius: 5px;
+        }
+
+        #explanationContainer.show {
+            display: block; /* Show the explanation when 'show' class is added */
+        }
+
+        /* Button styling */
+        #toggleExplainButton { /* Added ID to the button */
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        #toggleExplainButton:hover {
+            background-color: #0056b3;
+        }
+
+        /* --- NEW CSS for Sidebar Layout --- */
+        .page-layout-wrapper {
+            display: flex; /* Makes this the flex container */
+            flex-wrap: wrap; /* Allows items to wrap onto the next line on smaller screens */
+            gap: 20px; /* Space between main content and sidebar */
+            max-width: 1200px; /* Max width for the entire main layout section */
+            margin: 20px auto; /* Center the layout wrapper */
+            padding: 0 20px; /* Add horizontal padding for smaller screens */
+        }
+
+        .main-content-area {
+            flex: 3; /* Main content takes 3 parts of the available space */
+            min-width: 450px; /* Ensures main content doesn't get too narrow before wrapping */
+            /* The .container within this will handle its own styling */
+        }
+
+        .sidebar-area {
+            flex: 1; /* Sidebar takes 1 part of the available space */
+            min-width: 250px; /* Ensures sidebar doesn't get too narrow */
+            /* The .container within this will handle its own styling */
+        }
+
+        /* Adjustments for .container inside flex items */
+        .main-content-area > .container,
+        .sidebar-area > .container {
+            margin: 0; /* Remove auto margins as flex item handles width */
+            width: 100%; /* Take full width of its flex parent */
+            box-shadow: none; /* Optionally remove shadow if desired, or let the parent flex item define its background/shadow */
+            border: none; /* Optionally remove border too */
+            background-color: transparent; /* Let the parent flex item define background */
+        }
+        /* Re-apply styling to the actual content blocks for consistency */
+        .main-content-area > .container,
+        .sidebar-area > .container {
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            border: none; /* No border for the inner container */
+        }
+        .sidebar-area > .container {
+            background-color: #e0f7fa; /* Light blue background for sidebar content */
+        }
+
+
+        /* Responsive Design for smaller screens */
+        @media (max-width: 768px) {
+            .page-layout-wrapper {
+                flex-direction: column; /* Stack main content and sidebar vertically */
+                align-items: center; /* Center the stacked items */
+                padding: 0 15px; /* Adjust padding for mobile */
+            }
+            .main-content-area,
+            .sidebar-area {
+                width: 100%; /* Make them full width */
+                flex: none; /* Remove flex sizing */
+                min-width: unset; /* Remove min-width constraint */
+            }
+            .main-content-area {
+                margin-bottom: 20px; /* Add space between main and sidebar when stacked */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="header">Shortcuts When Coding HTML with Emmet</h1>
+        <p><a href="https://docs.emmet.io/cheat-sheet/" target="_blank" rel="noopener noreferrer">Visit Emmet Cheat Sheet Website</a></p>
+
+        <h2 id="example">Example Usage</h2>
+
+        <p><strong>Input Emmet code:</strong></p>
+        <code>(h$.value-$.#Question-$.{Question $}+br)*4</code>
+
+        <p><strong>Output HTML code:</strong></p>
+        <pre><code>
+&lt;h1 class=&quot;value-1&quot; id=&quot;Question-1&quot;&gt;Question 1&lt;/h1&gt;&lt;br&gt;
+&lt;h2 class=&quot;value-2&quot; id=&quot;Question-2&quot;&gt;Question 2&lt;/h2&gt;&lt;br&gt;
+&lt;h3 class=&quot;value-3&quot; id=&quot;Question-3&quot;&gt;Question 3&lt;/h3&gt;&lt;br&gt;
+&lt;h4 class=&quot;value-4&quot; id=&quot;Question-4&quot;&gt;Question 4&lt;/h4&gt;&lt;br&gt;
+        </code></pre>
+
+        <p><strong>Rendered Website Output:</strong></p>
+        <h1 class="value-1" id="Question-1">Question 1</h1>
+        <br>
+        <h2 class="value-2" id="Question-2">Question 2</h2>
+        <br>
+        <h3 class="value-3" id="Question-3">Question 3</h3>
+        <br>
+        <h4 class="value-4" id="Question-4">Question 4</h4>
+        <br>
+    </div>
+
+    <div class="container">
+        <button type="button" id="toggleExplainButton">Show Explanation for Example</button>
+
+        <div id="explanationContainer">
+            <h2 id="explanationHeader">Emmet Example Explanation</h2>
+            <p><strong>h</strong> = Header Tag (e.g., h1, h2, h3)</p>
+            <p><strong>.</strong> = Class Selector</p>
+            <p><strong>$</strong> = Counter / Loop number (auto-increments)</p>
+            <p><strong>#</strong> = ID Selector</p>
+            <p><strong>{str}</strong> = Content (text inside the tag)</p>
+            <p><strong>+</strong> = Sibling Operator (creates an element at the same level)</p>
+            <p><strong>*N</strong> = Multiplication (repeats the preceding element or group N times)</p>
+            <p><strong>()</strong> = Grouping (used for complex nested structures and applying multiplication to a group)</p>
+        </div>
+    </div>
+
+    <div class="page-layout-wrapper">
+        <main class="main-content-area">
+            <div class="container">
+                <h1 id="instructions">Emmet Abbreviation Cheatsheet</h1>
+
+                <h2>Basic Elements & Attributes</h2>
+                <p><strong>div</strong> or **(no tag)** = Creates a `&lt;div&gt;` tag (implicit tag)</p>
+                <p><strong>p</strong> = Creates a `&lt;p&gt;` tag</p>
+                <p><strong>a</strong> = Creates an `&lt;a&gt;` tag</p>
+                <p><strong>img</strong> = Creates an `&lt;img&gt;` tag with `src` and `alt` attributes</p>
+                <p><strong>input</strong> = Creates an `&lt;input&gt;` tag with `type="text"`</p>
+                <p><strong>input:email</strong> = Creates `&lt;input type="email"&gt;` (various input types available)</p>
+                <p><strong>meta:utf</strong> = Creates `&lt;meta charset="UTF-8"&gt;`</p>
+                <p><strong>link:css</strong> = Creates `&lt;link rel="stylesheet" href="style.css"&gt;`</p>
+                <p><strong>script:src</strong> = Creates `&lt;script src="main.js"&gt;&lt;/script&gt;`</p>
+                <p><strong>doc</strong> or <strong>html:5</strong> = Generates full HTML5 boilerplate</p>
+
+                <h2>Operators & Modifiers</h2>
+                <p><strong>&gt;</strong> (Child) = Nest elements inside each other. <br>
+                Example: <strong>div&gt;ul&gt;li</strong> expands to `&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;`</p>
+
+                <p><strong>+</strong> (Sibling) = Place elements next to each other at the same level. <br>
+                Example: <strong>div+p+img</strong> expands to `&lt;div&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;img&gt;`</p>
+
+                <p><strong>^</strong> (Climb-up) = Move up one level in the tree. <br>
+                Example: <strong>div&gt;ul&gt;li^p</strong> expands to `&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;`</p>
+
+                <p><strong>*N</strong> (Multiplication) = Repeat an element or group N times. <br>
+                Example: <strong>ul&gt;li*3</strong> expands to `&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;`</p>
+
+                <p><strong>$</strong> (Numbering) = Place cursor/number counter. <br>
+                Example: <strong>h${Item $}*3</strong> expands to `&lt;h1&gt;Item 1&lt;/h1&gt;&lt;h2&gt;Item 2&lt;/h2&gt;&lt;h3&gt;Item 3&lt;/h3&gt;`</p>
+
+                <p><strong>$@-</strong> (Reverse Numbering) = Decrement counter. <br>
+                Example: <strong>li$@- {Item $}*3</strong> expands to `&lt;li&gt;Item 3&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;li&gt;Item 1&lt;/li&gt;`</p>
+
+                <p><strong>$@N</strong> (Start Numbering at N) = Start counter from a specific number. <br>
+                Example: <strong>li$@3 {Item $}*3</strong> expands to `&lt;li&gt;Item 3&lt;/li&gt;&lt;li&gt;Item 4&lt;/li&gt;&lt;li&gt;Item 5&lt;/li&gt;`</p>
+
+                <p><strong>.class</strong> (Class) = Add a class attribute. <br>
+                Example: <strong>p.my-paragraph</strong> expands to `&lt;p class="my-paragraph"&gt;&lt;/p&gt;`</p>
+
+                <p><strong>#id</strong> (ID) = Add an ID attribute. <br>
+                Example: <strong>div#main-content</strong> expands to `&lt;div id="main-content"&gt;&lt;/div&gt;`</p>
+
+                <p><strong>[attr="value"]</strong> (Attributes) = Add custom attributes. <br>
+                Example: <strong>a[href="#top" title="Back to top"]</strong> expands to `&lt;a href="#top" title="Back to top"&gt;&lt;/a&gt;`</p>
+
+                <p><strong>{text}</strong> (Text) = Add text content inside the tag. <br>
+                Example: <strong>p{Hello World}</strong> expands to `&lt;p&gt;Hello World&lt;/p&gt;`</p>
+
+                <p><strong>{}</strong> (Empty Content) = Ensure the tag has no content (useful for self-closing tags, though not strictly needed). <br>
+                Example: <strong>img{}</strong> expands to `&lt;img&gt;`</p>
+
+                <p><strong>()</strong> (Grouping) = Group complex expressions together. <br>
+                Example: <strong>(header&gt;nav)+main+(footer&gt;p)</strong> expands to:
+                <pre><code>
+&lt;header&gt;
+    &lt;nav&gt;&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;&lt;/main&gt;
+&lt;footer&gt;
+    &lt;p&gt;&lt;/p&gt;
+&lt;/footer&gt;
+                </code></pre>
+                </p>
+
+                <h2>Dummy Text (Lorem Ipsum)</h2>
+                <p><strong>lorem</strong> = Generates a 30-word Lorem Ipsum paragraph. <br>
+                Example: <strong>p>lorem</strong> expands to a `&lt;p&gt;` with dummy text.</p>
+                <p><strong>loremN</strong> = Generates N words of Lorem Ipsum. <br>
+                Example: <strong>p>lorem10</strong> generates 10 words.</p>
+            </div>
+        </main>
+
+        <aside class="sidebar-area">
+            <div class="container"> <h2>Useful Resources</h2>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer">MDN HTML Docs</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer">MDN CSS Docs</a></li>
+                    <li><a href="https://www.w3schools.com/html/" target="_blank" rel="noopener noreferrer">W3Schools HTML</a></li>
+                    <li><a href="https://www.w3schools.com/css/" target="_blank" rel="noopener noreferrer">W3Schools CSS</a></li>
+                    
+                </ul>
+                <h3>Composer: JerryKristenTrinh</h3>
+                <p>A coder who tried to learn new things</p>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Get references to the button and the explanation container
+        const toggleButton = document.getElementById('toggleExplainButton');
+        const explanationDiv = document.getElementById('explanationContainer');
+
+        // Add a click event listener to the button
+        toggleButton.addEventListener('click', function() {
+            // Toggle the 'show' class on the explanation container
+            explanationDiv.classList.toggle('show');
+
+            // Optionally, change the button text based on visibility
+            if (explanationDiv.classList.contains('show')) {
+                toggleButton.textContent = 'Hide Explanation for Example';
+            } else {
+                toggleButton.textContent = 'Show Explanation for Example';
+            }
+        });
+    </script>
+</body>
+</html>
